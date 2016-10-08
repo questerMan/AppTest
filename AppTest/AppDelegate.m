@@ -16,8 +16,38 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [AMapServices sharedServices].apiKey = @"5cb95f9adc87378d478e2c9a93b77974";
+    
+    [self initStartUI];
+    
     return YES;
+}
+
+
+-(void)initStartUI{
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    MainController *mainController = [[MainController alloc] init];
+    
+    
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:mainController];
+    
+    LeftViewController *leftViewController = [[LeftViewController alloc]init];
+    
+    
+    SlideMenuController *slideMenuController = [[SlideMenuController alloc] initWithMainViewController:nvc leftMenuViewController:leftViewController];
+    slideMenuController.automaticallyAdjustsScrollViewInsets = YES;
+    
+    slideMenuController.delegate = mainController;
+
+    [slideMenuController changeLeftViewWidth:MATCHSIZE_S(500)];
+
+    self.window.rootViewController = slideMenuController;
+    [self.window makeKeyWindow];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

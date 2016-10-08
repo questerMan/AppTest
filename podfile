@@ -1,0 +1,15 @@
+platform :ios, '7.0'
+#use_frameworks!个别需要用到它，比如reactiveCocoa
+
+def pods
+pod 'AFNetworking', '~> 2.6'
+#pod 'AMapNavi' #导航 SDK
+pod 'AMapLocation'  #定位SDK
+#pod 'AMap3DMap'  #3D地图SDK
+pod 'AMap2DMap' #2D地图SDK (2D和3D不能同时使⽤用)
+pod 'AMapSearch'  #搜索服务SDK
+pod 'Masonry', '~> 0.6.1'
+end
+target ‘AppTest’ do
+pods
+end
